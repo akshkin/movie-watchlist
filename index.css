@@ -21,7 +21,6 @@ html, body {
     
 }
 body{
-    max-width: 550px;
     margin: 0 auto;
 }
 a{
@@ -32,15 +31,18 @@ header{
     background-color: var(--color-bg-dark);
     background-blend-mode: multiply;
     height: 208px;
+    width: 100%;
     position: relative;
     padding: 2em;
-    margin: 0 auto;
 }
-.top{
+
+.top div{
+    max-width: 550px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-top: 1.2em;
+    margin: 0 auto;
 }
 svg{
     color: var(--color-light);
@@ -62,6 +64,7 @@ header a:hover,
 header a:focus{
     opacity: 0.7;
 }
+
 .search-bar{
     display: flex;
     justify-content: center;
@@ -169,7 +172,7 @@ main{
     width: 65%;
 }
 #poster img{
-    /* max-width: 100%; */
+
     width: 99px;
     height: 147px;
     object-fit: cover;
@@ -179,12 +182,7 @@ main{
     display: flex;
     flex-direction: column;
 }
-/* .column1,
-.column2{
-    width: 100%;
-} */
 
-   
 .movie-title{
     font-weight: var(--font-weight-regular);
     font-size: var(--font-size-large);
@@ -218,3 +216,8 @@ main{
 .remove-watchlist .plus-icon{
     display: none;
 } */
+@media(min-width: 650px){
+    .container{
+        width: 650px
+    }
+}
