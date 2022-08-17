@@ -14,15 +14,17 @@ async function searchMovie(event){
     moviesIdArray = []
     const response = await fetch(`https://www.omdbapi.com/?apikey=907fb758&s=${searchInput.value}`)
     const data = await response.json()
-            
-            console.log(data.Search)
-            for (let id of data.Search){
-                imdbId = id.imdbID
-                moviesIdArray.push(imdbId)
-            }
-            console.log(moviesIdArray) 
-            displayMovies(imdbId)
+    if (!data.Search){
+        main.innerHTML = `<div class="empty-container"><h3 class="empty-container-title">Unable to find what you are looking for.<br>Please try 
+        another search.</h3></div>`
+    } else{
+        for (let id of data.Search){
+            imdbId = id.imdbID
+            moviesIdArray.push(imdbId)
         }
+            displayMovies(imdbId)
+    }     
+}
             
       
     function displayMovies(id){
@@ -68,10 +70,10 @@ async function searchMovie(event){
 }
 
 function addToWatchlist(id){
-    const btn = document.getElementById(id)
-    console.log(watchlistArray)
+    let btn = document.getElementById(id)
+    
     if (!watchlistArray.includes(id) ){
-        watchlistArray.push(id)
+       watchlistArray.push(id)
     }
     localStorage.setItem("watchList", JSON.stringify(watchlistArray))
 }

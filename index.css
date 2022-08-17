@@ -143,6 +143,9 @@ main{
     color: var(--color-empty-link);
     font-size: var(--font-size-medium)
 }
+.add-hover:hover{
+    opacity: 0.7;
+}
 .container,
 .rows{
     display: flex;
