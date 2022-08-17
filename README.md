@@ -24,6 +24,7 @@ This is a solution to the [Scrimba's solo project - movie watchlist]([https://ww
 
 ### Screenshot
 
+
 ![](./akshkin.github.io_movie-watchlist_.png.png)
 
 
@@ -40,4 +41,5 @@ This is a solution to the [Scrimba's solo project - movie watchlist]([https://ww
 - CSS custom properties
 - Flexbox
 - Mobile-first workflow
+
  
