@@ -25,8 +25,8 @@ function displayWatchlist(){
                                 <button class="btn" id="${id}" onclick="removeFromWatchlist(id, event)">
                                     <svg class="remove-icon" xmlns="http://www.w3.org/2000/svg" 
                                     aria-hidden="true" role="img" 
-                                    width="1em" 
-                                    height="1em" 
+                                    width="1.2em" 
+                                    height="1.2em" 
                                     preserveAspectRatio="xMidYMid meet" 
                                     viewBox="0 0 1024 1024">
                                     <path fill="currentColor" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64zm192 472c0 4.4-3.6 8-8 8H328c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h368c4.4 0 8 3.6 8 8v48z"/>
@@ -49,13 +49,13 @@ function removeFromWatchlist(id){
     const newWatchlist = watchlist.filter(movie => movie !== id)
     console.log(newWatchlist)
     localStorage.setItem("watchList", JSON.stringify(newWatchlist))
-    if (newWatchlist.length === 0){
-        watchlistEl.innerHTML = 
-        `<div> Your watchlist looks empty, let's add some movies
-        </div>`
-    } else {
+    // if (newWatchlist.length === 0){
+    //     watchlistEl.innerHTML = 
+    //     `<div> Your watchlist looks empty, let's add some movies
+    //     </div>`
+    // } else {
         displayWatchlist()
-    }
+    //}
     
 }
 
