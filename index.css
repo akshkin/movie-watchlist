@@ -152,7 +152,7 @@ main{
 .container,
 .rows{
     display: flex;
-    gap: 0.7em;
+    gap: 1em;
     align-items: center;
 }
 .container{
@@ -164,15 +164,13 @@ main{
 .container + .container{
     border-top: 1.5px solid #E5E7EB;
 }
-.column1{
+/* .column1{
     width: 30%;
-}
+} */
 .column2{
-    border: 2px solid black;
-    width: 65%;
+    width: 68%;
 }
 #poster img{
-
     width: 99px;
     height: 147px;
     object-fit: cover;
@@ -219,5 +217,11 @@ main{
 @media(min-width: 650px){
     .container{
         width: 650px
+    }
+    .column1{
+        width: 30%;
+    }
+    .column2{
+        width: 68%;
     }
 }
