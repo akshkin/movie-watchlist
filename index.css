@@ -33,13 +33,15 @@ header{
     height: 208px;
     width: 100%;
     position: relative;
-    padding: 2em;
+    padding: 1em;
 }
 
 .top div{
+    width: 100%;
     max-width: 550px;
     display: flex;
     align-items: center;
+    gap: 1em;
     justify-content: space-between;
     padding-top: 1.2em;
     margin: 0 auto;
@@ -50,7 +52,7 @@ svg{
 
 h1{
     font-weight: 800;
-    font-size: 2.67rem;
+    font-size: 2rem;
 }
 header h1,
 header a{
@@ -131,6 +133,7 @@ main{
     font-weight: 700;
 }
 .empty-container{
+    padding: 1em;
     display: grid;
     place-items: center;
     margin-top: 8em;
@@ -156,6 +159,7 @@ main{
     align-items: center;
 }
 .container{
+    max-width: 100%;
     min-height: 147px;
     width: 462px;
     padding: 1.5em;
@@ -164,9 +168,7 @@ main{
 .container + .container{
     border-top: 1.5px solid #E5E7EB;
 }
-/* .column1{
-    width: 30%;
-} */
+
 .column2{
     width: 68%;
 }
@@ -179,6 +181,7 @@ main{
 .info{
     display: flex;
     flex-direction: column;
+    align-self: flex-start;
 }
 
 .movie-title{
@@ -204,24 +207,13 @@ main{
 .remove-icon{
     color: var(--color-dark);
 }
-/*
-.remove-icon{
-    display: none;
-}
-.remove-watchlist .remove-icon{
-    display: block;
-}
-.remove-watchlist .plus-icon{
-    display: none;
-} */
+
 @media(min-width: 650px){
+    html{
+        font-size: 110%;
+    }
     .container{
         width: 650px
     }
-    .column1{
-        width: 30%;
-    }
-    .column2{
-        width: 68%;
-    }
+    
 }
