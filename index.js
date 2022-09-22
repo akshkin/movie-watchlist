@@ -53,7 +53,7 @@ function displayMovies(location, array){
                                     <p  class="movie-runtime">${data.Runtime}</p> 
                                     <p class="movie-genre">${data.Genre}</p> 
                                     <button class="btn" id="${id}" onclick="toggleWatchlist(id)">
-                                        <img src=${watchlistArray.includes(id)? "/images/minus-circle-filled.svg" : "/images/plus-circle-fill.svg"} />                                        
+                                        <img src=${watchlistArray.includes(id)? "./images/minus-circle-filled.svg" : "./images/plus-circle-fill.svg"} />                                        
                                         watchlist
                                     </button>
                                 </div>
