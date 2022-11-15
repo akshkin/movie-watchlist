@@ -3,10 +3,11 @@ const searchInput = document.getElementById("input")
 const main = document.getElementById("main")
 const watchlistEl = document.getElementById("watchlist")
 
+
 let moviesIdArray = []
 let watchlistArray = JSON.parse(localStorage.getItem("watchList")) || []
 
-let html = ""
+// let html = ""
 
 if (searchInput){
     document.getElementById("search-btn").addEventListener("click", searchMovie)
@@ -26,7 +27,7 @@ async function searchMovie(event){
             imdbId = id.imdbID
             moviesIdArray.push(imdbId)
         }
-            displayMovies(main, moviesIdArray)
+        displayMovies(main, moviesIdArray)
     }     
 }
             
@@ -40,7 +41,7 @@ function displayMovies(location, array){
                 .then(response => response.json())
                 .then(data => {  
                                         
-                 html += `<div id="container" class="container">  
+                html += `<div id="container" class="container">  
                             <div id="poster" class="column1">
                                 <img src="${data.Poster}" alt="${data.Title} poster"/>
                             </div>
@@ -53,7 +54,7 @@ function displayMovies(location, array){
                                     <p  class="movie-runtime">${data.Runtime}</p> 
                                     <p class="movie-genre">${data.Genre}</p> 
                                     <button class="btn" id="${id}" onclick="toggleWatchlist(id)">
-                                        <img src=${watchlistArray.includes(id)? "./images/minus-circle-filled.svg" : "./images/plus-circle-fill.svg"} />                                        
+                                        <img src=${watchlistArray.includes(id)? "./images/minus-circle-filled.svg" : "./images/plus-circle-fill.svg"} /> 
                                         watchlist
                                     </button>
                                 </div>
@@ -63,14 +64,16 @@ function displayMovies(location, array){
                         ` 
         
                           
-                      location.innerHTML = html   
-             })  
-    }  
-        
-}
+                    location.innerHTML = html   
+                })  
 
+        }  
+       
+}
+        
 function addToWatchlist(id){
     watchlistArray.push(id)
+    console.log(id)
     localStorage.setItem("watchList", JSON.stringify(watchlistArray))
 }
 
@@ -78,17 +81,18 @@ function removeFromWatchlist(id){
     const watchlist = JSON.parse(localStorage.getItem("watchList"))
     const newWatchlist = watchlist.filter(movie => movie !== id)
     localStorage.setItem("watchList", JSON.stringify(newWatchlist))
-    displayWatchlist()
+    watchlistEl.innerHTML = displayWatchlist(watchlistArray)
 }
-
 
 function toggleWatchlist(id){
     const watchlist = JSON.parse(localStorage.getItem("watchList"))
-    if (!watchlistArray.includes(id)) {
+   
+    if (!watchlistArray.includes(id)) { 
         addToWatchlist(id)
     } else if (watchlist.includes(id)){
         removeFromWatchlist(id)    
     }
+    displayWatchlist()
 }
 
 function displayWatchlist(){
@@ -97,7 +101,7 @@ function displayWatchlist(){
     if(watchlist && watchlist.length > 0){
         displayMovies(watchlistEl, watchlist)        
     } else {
-         watchlistEl.innerHTML = `
+        watchlistEl.innerHTML = `
             <div class="empty-container">
                 <h3 class="empty-container-title">Your watchlist is looking a little empty...</h3>
                 <p class="empty-text watchlist-empty-text">
@@ -118,7 +122,8 @@ function displayWatchlist(){
 
     }
 }
-displayWatchlist()
+
+watchlistEl && displayWatchlist()
 
 
 
