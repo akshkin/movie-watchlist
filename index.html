@@ -7,16 +7,15 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="index.css" />
+    <link rel="icon" href="/images/movie.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie watchlist</title>
   </head>
   <body>
-    <header>
-      <div class="top">
-        <div>
-          <h1>Find your film</h1>
-          <p><a href="watchlist.html">My watchlist</a></p>
-        </div>
+    <header class="top">
+      <div>
+        <h1>Find your film</h1>
+        <p><a href="watchlist.html">My watchlist</a></p>
       </div>
       <form class="search-bar">
         <label for="input" class="label"
@@ -33,8 +32,9 @@
             <path
               fill="currentColor"
               d="M1152 704q0-185-131.5-316.5T704 256T387.5 387.5T256 704t131.5 316.5T704 1152t316.5-131.5T1152 704zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124q-143 0-273.5-55.5t-225-150t-150-225T0 704t55.5-273.5t150-225t225-150T704 0t273.5 55.5t225 150t150 225T1408 704q0 220-124 399l343 343q37 37 37 90z"
-            /></svg
-        ></label>
+            />
+          </svg>
+        </label>
         <input type="text" placeholder="Search for a movie" id="input" />
         <button id="search-btn">Search</button>
       </form>

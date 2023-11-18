@@ -6,7 +6,7 @@
   --font-weight-regular: 500;
   --color-light: #e5e7eb;
   --color-dark: #111827;
-  --color-bg-dark: #0e0e0e;
+  --color-bg-dark: #675e5e;
   --color-dark-gray: #111827;
   --color-empty-link: #363636;
 }
@@ -30,24 +30,28 @@ a {
 }
 header {
   text-align: left;
+  background-image: url("/images/bg.jpg");
+  background-size: cover;
   background-color: var(--color-bg-dark);
   background-blend-mode: multiply;
   height: 208px;
   width: 100%;
   position: relative;
   padding: 1em;
+  display: grid;
+  place-items: center;
 }
 
 .top div {
   width: 100%;
   max-width: 550px;
+  margin: auto;
   display: flex;
   align-items: center;
   gap: 1em;
   justify-content: space-between;
-  padding-top: 1.2em;
-  margin: 0 auto;
 }
+
 svg {
   color: var(--color-light);
 }
@@ -55,6 +59,7 @@ svg {
 h1 {
   font-weight: 800;
   font-size: 2rem;
+  margin: 0;
 }
 header h1,
 header a {
@@ -74,9 +79,8 @@ header a:focus {
   justify-content: center;
   position: absolute;
   bottom: -30;
-  left: 0;
-  right: 0;
-  width: 100%;
+  width: 90%;
+  margin-inline: 1em;
 }
 .label,
 #input {
@@ -86,27 +90,33 @@ header a:focus {
   border-right: 0;
   border-radius: 5px 0 0 5px;
   padding: 0.5em;
-  background-color: var(--color-bg-dark);
+  background-color: var(--color-dark);
 }
 #input {
   padding: 0.4em;
-  width: 300px;
+  width: 100%;
   max-width: 342px;
   border-left: 0;
 }
 #input:focus {
   outline: none;
 }
+
 .btn {
   color: var(--color-dark-gray);
   border: 0;
   cursor: pointer;
   background: none;
+  display: flex;
+  gap: 0.2em;
+  align-items: center;
 }
+
 .btn:hover,
 .btn:focus {
   opacity: 0.7;
 }
+
 #search-btn {
   background-color: var(--color-light);
   color: #374151;
@@ -160,6 +170,9 @@ main {
   gap: 1em;
   align-items: center;
 }
+.rows {
+  width: 100%;
+}
 .container {
   max-width: 100%;
   min-height: 147px;
@@ -172,14 +185,16 @@ main {
 }
 
 .column2 {
-  width: 68%;
+  width: 100%;
 }
+
 #poster img {
   width: 99px;
   height: 147px;
   object-fit: cover;
   object-position: center;
 }
+
 .info {
   display: flex;
   flex-direction: column;
@@ -191,6 +206,7 @@ main {
   font-size: var(--font-size-large);
   margin: 0;
 }
+
 .movie-rating,
 .movie-runtime,
 .movie-genre {
@@ -198,6 +214,7 @@ main {
   font-weight: var(--font-weight-light);
   color: var(--color-dark-gray);
 }
+
 .movie-plot {
   color: #6b7280;
   font-size: var(--font-size-medium);
