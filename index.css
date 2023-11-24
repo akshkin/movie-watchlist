@@ -134,8 +134,19 @@ header a:focus {
   background-color: #374151;
   color: var(--color-light);
 }
+
+.not-allowed {
+  cursor: not-allowed;
+  user-select: none;
+}
+
 main {
   margin-top: 2em;
+}
+
+.loader img {
+  display: block;
+  margin-inline: auto;
 }
 .empty-text,
 .empty-film-icon {

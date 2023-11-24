@@ -40,6 +40,9 @@
       </form>
     </header>
     <main id="main">
+      <div class="loader" id="loader" hidden>
+        <img src="/movie-reel.svg" alt="loading" />
+      </div>
       <div class="empty-container">
         <svg
           class="empty-film-icon"
@@ -58,6 +61,7 @@
         </svg>
         <p class="empty-text">Start exploring</p>
       </div>
+      <div id="movies-container"></div>
     </main>
     <script src="index.js"></script>
   </body>

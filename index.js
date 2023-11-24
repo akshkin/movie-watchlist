@@ -1,6 +1,10 @@
 const searchInput = document.getElementById("input");
 const form = document.querySelector("form");
+const searchBtn = document.getElementById("search-btn");
 const main = document.getElementById("main");
+const emptyContainer = document.querySelector(".empty-container");
+const loader = document.getElementById("loader");
+const moviesContainer = document.getElementById("movies-container");
 const watchlistEl = document.getElementById("watchlist");
 
 // store movie details in an object
@@ -15,18 +19,29 @@ let watchlistArray = JSON.parse(localStorage.getItem("watchList")) || [];
 // fetch imdb ids
 async function fetchMovieIds(event) {
   event.preventDefault();
-  moviesIdArray = [];
-  const response = await fetch(
-    `https://www.omdbapi.com/?apikey=907fb758&s=${searchInput.value}`
-  );
-  const data = await response.json();
+  let moviesIdArray = [];
+  movies = {};
 
-  if (!data.Search) {
-    main.innerHTML = `<div class="empty-container"><h3 class="empty-container-title">Unable to find what you are looking for.<br>Please try 
-          another search.</h3></div>`;
-  } else {
-    data.Search.map((result) => moviesIdArray.push(result.imdbID));
-    fetchMovies(moviesIdArray, movies);
+  loader.hidden = false;
+
+  try {
+    const response = await fetch(
+      `https://www.omdbapi.com/?apikey=907fb758&s=${searchInput.value}`
+    );
+    const data = await response.json();
+
+    if (!data.Search) {
+      main.innerHTML = `<div class="empty-container"><h3 class="empty-container-title">Unable to find what you are looking for.<br>Please try 
+            another search.</h3></div>`;
+    } else {
+      data.Search.map((result) => moviesIdArray.push(result.imdbID));
+      fetchMovies(moviesIdArray, movies);
+
+      searchInput.value = "";
+    }
+  } catch (error) {
+    loader.hidden = true;
+    emptyContainer.textContent = "Something went wrong!";
   }
 }
 
@@ -40,13 +55,17 @@ async function fetchMovies(movieIds, movies) {
     const imdbId = data.imdbID;
     movies[imdbId] = data;
   }
-  main
-    ? displayMovies(main, movies)
+
+  moviesContainer
+    ? displayMovies(moviesContainer, movies)
     : displayMovies(watchlistEl, watchlistMovies);
 }
 
 // display movies
 function displayMovies(element, movies) {
+  loader.hidden = true;
+  if (emptyContainer) emptyContainer.style.display = "none";
+
   let html = "";
   html = Object.keys(movies)
     .map((movieId) => {
@@ -100,8 +119,8 @@ function toggleWatchlist(id) {
   } else if (watchlistArray.includes(id)) {
     removeFromWatchlist(id);
   }
-  main
-    ? displayMovies(main, movies)
+  moviesContainer
+    ? displayMovies(moviesContainer, movies)
     : displayMovies(watchlistEl, watchlistMovies);
   watchlistEl && displayWatchlist();
 }
@@ -130,7 +149,6 @@ function displayWatchlist() {
                 <span class="add-hover">Let's add some movies!</span>
                 </a>
             </p>
-
         </div>`;
   }
 }
