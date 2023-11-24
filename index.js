@@ -1,9 +1,9 @@
 const searchInput = document.getElementById("input");
 const form = document.querySelector("form");
 const searchBtn = document.getElementById("search-btn");
-const main = document.getElementById("main");
+const main = document.querySelector("main");
 const emptyContainer = document.querySelector(".empty-container");
-const loader = document.getElementById("loader");
+const loader = document.querySelector(".loader");
 const moviesContainer = document.getElementById("movies-container");
 const watchlistEl = document.getElementById("watchlist");
 
@@ -23,6 +23,7 @@ async function fetchMovieIds(event) {
   movies = {};
 
   loader.hidden = false;
+  searchInput.style.pointerEvents = "none";
 
   try {
     const response = await fetch(
@@ -38,27 +39,33 @@ async function fetchMovieIds(event) {
       fetchMovies(moviesIdArray, movies);
 
       searchInput.value = "";
+      searchInput.style.pointerEvents = "";
     }
   } catch (error) {
     loader.hidden = true;
-    emptyContainer.textContent = "Something went wrong!";
+    main.textContent = "Something went wrong!";
   }
 }
 
 // fetch movie details and store in an object
 async function fetchMovies(movieIds, movies) {
+  loader.hidden = false;
   for (const id of movieIds) {
-    const response = await fetch(
-      `https://www.omdbapi.com/?apikey=907fb758&i=${id}`
-    );
-    const data = await response.json();
-    const imdbId = data.imdbID;
-    movies[imdbId] = data;
+    try {
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=907fb758&i=${id}`
+      );
+      const data = await response.json();
+      const imdbId = data.imdbID;
+      movies[imdbId] = data;
+      moviesContainer
+        ? displayMovies(moviesContainer, movies)
+        : displayMovies(watchlistEl, watchlistMovies);
+    } catch (error) {
+      loader.hidden = true;
+      main.textContent = "Something went wrong!";
+    }
   }
-
-  moviesContainer
-    ? displayMovies(moviesContainer, movies)
-    : displayMovies(watchlistEl, watchlistMovies);
 }
 
 // display movies

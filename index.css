@@ -135,13 +135,9 @@ header a:focus {
   color: var(--color-light);
 }
 
-.not-allowed {
-  cursor: not-allowed;
-  user-select: none;
-}
-
 main {
   margin-top: 2em;
+  text-align: center;
 }
 
 .loader img {
@@ -216,6 +212,7 @@ main {
   font-weight: var(--font-weight-regular);
   font-size: var(--font-size-large);
   margin: 0;
+  text-align: left;
 }
 
 .movie-rating,
@@ -231,6 +228,7 @@ main {
   font-size: var(--font-size-medium);
   font-weight: var(--font-weight-light);
   margin: 0;
+  text-align: left;
 }
 
 .plus-icon,
